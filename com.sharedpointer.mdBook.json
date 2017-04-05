@@ -28,8 +28,7 @@
            "buildsystem": "simple",            
            "build-commands": [ 
                "/usr/lib/sdk/rust/install.sh", 
-               "source /usr/lib/sdk/rust/use.sh", 
-               "export PATH=$PATH:/usr/lib/sdk/rust/bin && cargo build && mkdir -p /app/bin && cp target/debug/mdbook /app/bin"
+               "source /usr/lib/sdk/rust/use.sh && cargo build && mkdir -p /app/bin && cp target/debug/mdbook /app/bin"
             ] 
         }
     ]
