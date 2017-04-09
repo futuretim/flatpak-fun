@@ -9,4 +9,11 @@ Currently useable on master:
 
 	- mdBook (requires the Rust Sdk Extension -- more details https://github.com/futuretim/rust-flatpak-extension)
 	- dhewm3
-		- you will need to copy the base directory of a Doom 3 install to the app directory after you install for instance:  /home/user/.var/app/com.sharedpointer.dhewm3/data/dhewm3. Checkout https://github.com/dhewm/dhewm3/blob/master/README.md for more details about the files you need (mainly just an up to date Doom 3 install. Doom 3 BFG *DOES OT* work).
+		- you will need to copy the base directory of a Doom 3 install to the app directory after you install for instance:  
+		
+				/home/user/.var/app/com.sharedpointer.dhewm3/data/dhewm3. 
+				
+				
+				Checkout https://github.com/dhewm/dhewm3/blob/master/README.md for more details about the files you need 
+				(mainly just an up to date Doom 3 install. Doom 3 BFG *DOES NOT* work).
+
