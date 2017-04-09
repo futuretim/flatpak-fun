@@ -1,0 +1,37 @@
+{
+    "app-id": "com.sharedpointer.FeedTheMonkey",
+    "version": "master",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "master",
+    "sdk": "org.kde.Sdk",
+    "command": "feedthemonkey",
+    "finish-args": ["--share=ipc", "--socket=x11", "--filesystem=host", "--device=dri" ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "V": "1"
+        }
+    },
+    "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
+    "modules": [
+        {
+           "name": "FeedTheMonkey",
+           "no-autogen": true,
+           "post-install": [
+           ],
+           "sources": [
+               {
+                   "type": "git",
+                   "url": "https://github.com/jeena/FeedTheMonkey.git",
+                   /* "branch": "5db62a607df5541baafd3cbba46e8fb80ca750d7" */
+                   "branch": "master"
+               },
+               {
+                    "type": "shell",
+                    "commands": [ "qmake PREFIX=/app" ]
+               }
+            ]
+        }
+    ]
+}
