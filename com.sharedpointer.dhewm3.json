@@ -5,7 +5,7 @@
     "runtime-version": "3.24",
     "sdk": "org.gnome.Sdk",
     "command": "dhewm3",
-    "finish-args": ["--share=network", "--socket=x11", "--filesystem=host", "--device=dri" ],
+    "finish-args": ["--share=network", "--socket=x11", "--socket=pulseaudio", "--filesystem=host", "--device=dri" ],
     "build-options" : {
         "cflags": "-O2 -g",
         "cxxflags": "-O2 -g",
@@ -34,7 +34,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/dhewm/dhewm3.git",
-                    "branch": "master"
+                    "branch": "d535e54c90d6d3f22aa2faa4f9a07e04f3e04dc5"
                 }
             ],
             "buildsystem": "cmake",            
