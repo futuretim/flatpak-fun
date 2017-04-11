@@ -1,9 +1,9 @@
 {
-    "app-id": "com.sharedpointer.garta",
+    "app-id": "com.github.zaari.garta",
     "version": "master",
-    "runtime": "org.freedesktop.Platform",
-    "runtime-version": "1.6",
-    "sdk": "net.vgt.Sdk",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.24",
+    "sdk": "org.gnome.Sdk",
     "sdk-extensions": [ "org.freedesktop.Sdk.Extension.rust" ],
     "command": "garta",
     "finish-args": ["--share=network", "--socket=x11", "--filesystem=host" ],
