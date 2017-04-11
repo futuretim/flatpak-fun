@@ -20,8 +20,8 @@
            "sources": [
                {
                    "type": "git",
-                   "url": "http://anongit.kde.org/trojita",
-                   "branch": "master"
+                   "url": "https://bitbucket.org/loki13/trojita.git",
+                   "branch": "webengine"
                }
            ],
            "buildsystem": "cmake",            
