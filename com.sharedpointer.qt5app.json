@@ -1,0 +1,52 @@
+{
+    "app-id": "com.sharedpointer.qt5app",
+    "version": "master",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.22",
+    "sdk": "org.gnome.Sdk",
+    "command": "qt5app",
+    "finish-args": ["--share=network", "--socket=x11", "--filesystem=host" ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "V": "1"
+        }
+    },
+    "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
+    "modules": [
+        {
+            "name": "qt5-qtbase",
+            "cleanup-platform": [ "/bin", "/mkspecs" ],
+            "config-opts": [ "--confirm-license", "--opensource",
+                             "--release", "--shared",
+                             "-platform", "linux-g++",
+                             "-optimized-qmake",
+                             "-nomake", "examples",
+                             "-nomake", "tests",
+                             "-system-harfbuzz",
+                             "-system-sqlite",
+                             "-no-alsa",
+                             "-accessibility",
+                             "-dbus-linked",
+                             "-fontconfig",
+                             "-glib",
+                             "-iconv",
+                             "-icu",
+                             "-openssl-linked",
+                             "-no-pch",
+                             "-no-rpath",
+                             "-no-separate-debug-info",
+                             "-reduce-relocations",
+                             "-no-directfb",
+                             "-no-linuxfb",
+                             "-no-kms",
+                             "-no-cups",
+                             "-system-proxies",
+
+                             "-archdatadir", "/usr/lib/"
+                           ],
+            "sources": [ { "type": "git", "url": "git://code.qt.io/qt/qtbase.git", "branch": "v5.7.1" } ]
+        }
+    ]
+}

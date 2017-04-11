@@ -1,0 +1,34 @@
+{
+    "app-id": "com.sharedpointer.gfortran",
+    "version": "master",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "master",
+    "sdk": "org.gnome.Sdk",
+    "command": "gfortran",
+    "finish-args": ["--share=network", "--socket=x11", "--filesystem=host" ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "V": "1"
+        }
+    },
+    "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
+    "modules": [
+        {
+           "name": "gfortran",
+           "no-autogen": true,
+           "sources": [
+               {
+                   "type": "file",
+                   "url": "http://gfortran.meteodat.ch/download/x86_64/releases/gcc-6.2.0.tar.xz",
+                   "sha256": "0e401868fe1119a60ad8778024a184732c7e0a4098f8e9c77aac93c74441c950"
+               },
+               {
+                   "type": "shell",
+                   "commands": [ "tar -xvf gcc-6.2.0.tar.xz", "./gcc-6.2.0/bin/gfortran" ]
+               }
+           ]
+        }
+    ]
+}

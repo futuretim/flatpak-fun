@@ -1,0 +1,31 @@
+{
+    "app-id": "com.sharedpointer.trojita",
+    "version": "master",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "master",
+    "sdk": "org.kde.Sdk",
+    "command": "trojita",
+    "finish-args": ["--share=network", "--socket=x11", "--filesystem=host" ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "V": "1"
+        }
+    },
+    "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
+    "modules": [
+        {
+           "name": "trojita",
+           "sources": [
+               {
+                   "type": "git",
+                   "url": "http://anongit.kde.org/trojita",
+                   "branch": "master"
+               }
+           ],
+           "buildsystem": "cmake",            
+           "config-opts": [ "-DCMAKE_INSTALL_PREFIX=/app" ] 
+        }
+    ]
+}

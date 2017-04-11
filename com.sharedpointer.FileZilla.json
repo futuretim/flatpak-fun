@@ -1,0 +1,49 @@
+{
+    "app-id": "com.sharedpointer.FileZilla",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "master",
+    "sdk": "org.gnome.Sdk",
+    "command": "filezilla",
+    "tags": ["nightly"],
+    "desktop-file-name-prefix": "(Nightly) ",
+    "finish-args": [
+        /* X11 + XShm access */
+        "--share=ipc", "--socket=x11",
+        /* Wayland access */
+        "--socket=wayland",
+        /* Needs to talk to the network to get currency data */
+        "--share=network",
+        /* Needed for dconf to work */
+        "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+    ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g"
+    },
+    "cleanup": ["/include", "/lib/pkgconfig",
+                "/share/pkgconfig", "/share/aclocal",
+                "/man", "/share/man", "/share/gtk-doc",
+                "/share/vala", "*.la", "*.a",
+                "/bin/gcalccmd",
+                "/lib/girepository-1.0", "/share/info", "/share/gtksourceview-3.0",
+                "/share/doc", "/share/gir-1.0"
+    ],
+    "modules": [
+        {
+            "name": "filezilla",
+            "no-autogen": true,
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://downloads.sourceforge.net/project/filezilla/FileZilla_Client/3.25.0/FileZilla_3.25.0_x86_64-linux-gnu.tar.bz2?r=&ts=1489698851&use_mirror=cytranet",
+                    "sha256": "5044016b57233d9ee98da8e973c8639aabe59109a94ade84779e80b3f286a2df"
+                },
+                {
+                    "type": "shell",
+                    "commands": [ "autoreconf -i" ]
+                }
+            ]
+        }
+    ]
+}

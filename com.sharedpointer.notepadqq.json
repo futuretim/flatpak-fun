@@ -1,0 +1,35 @@
+{
+    "app-id": "com.sharedpointer.notepadqq",
+    "version": "master",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "master",
+    "sdk": "org.kde.Sdk",
+    "command": "notepadqq",
+    "finish-args": ["--share=network", "--socket=x11", "--filesystem=host" ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "V": "1"
+        }
+    },
+    "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
+    "modules": [
+        {
+           "name": "notepadqq",
+           "no-autogen": true,
+           "sources": [
+               {
+                   "type": "git",
+                   "url": "https://github.com/notepadqq/notepadqq.git",
+                   "branch": "master"
+               },
+               {
+                    "type": "shell",
+                    "commands": [ "./configure --qmake /usr/bin/qmake --lrelease /usr/bin/lrelease" ]
+                }
+               
+           ]
+        }
+    ]
+}

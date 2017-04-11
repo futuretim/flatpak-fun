@@ -1,0 +1,36 @@
+{
+    "app-id": "com.sharedpointer.garta",
+    "version": "master",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "1.6",
+    "sdk": "net.vgt.Sdk",
+    "sdk-extensions": [ "org.freedesktop.Sdk.Extension.rust" ],
+    "command": "garta",
+    "finish-args": ["--share=network", "--socket=x11", "--filesystem=host" ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {    
+            "V": "1"
+        },
+        "build-args": [ "--share=network" ]
+    },
+    "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
+    "modules": [
+        {
+           "name": "garta",
+           "sources": [
+               {
+                   "type": "git",
+                   "url": "https://github.com/zaari/garta"
+               }
+           ],
+           "buildsystem": "simple",            
+           "build-commands": [ 
+               "/usr/lib/sdk/rust/install.sh", 
+               "source /usr/lib/sdk/rust/use.sh", 
+               "export PATH=$PATH:/usr/lib/sdk/rust/bin && ./configure.sh --prefix /app && cargo build --release && ./install.sh"
+            ] 
+        }
+    ]
+}
