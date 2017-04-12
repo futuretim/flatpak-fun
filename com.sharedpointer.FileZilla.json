@@ -1,21 +1,14 @@
 {
     "app-id": "com.sharedpointer.FileZilla",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "master",
+    "runtime-version": "3.24",
     "sdk": "org.gnome.Sdk",
     "command": "filezilla",
-    "tags": ["nightly"],
-    "desktop-file-name-prefix": "(Nightly) ",
     "finish-args": [
-        /* X11 + XShm access */
-        "--share=ipc", "--socket=x11",
-        /* Wayland access */
+        "--share=ipc", 
+        "--socket=x11",
         "--socket=wayland",
-        /* Needs to talk to the network to get currency data */
-        "--share=network",
-        /* Needed for dconf to work */
-        "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
-        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+        "--share=network"
     ],
     "build-options" : {
         "cflags": "-O2 -g",
@@ -31,17 +24,47 @@
     ],
     "modules": [
         {
-            "name": "filezilla",
+            "name": "wxWidgets",
             "no-autogen": true,
             "sources": [
                 {
-                    "type": "file",
-                    "url": "https://downloads.sourceforge.net/project/filezilla/FileZilla_Client/3.25.0/FileZilla_3.25.0_x86_64-linux-gnu.tar.bz2?r=&ts=1489698851&use_mirror=cytranet",
-                    "sha256": "5044016b57233d9ee98da8e973c8639aabe59109a94ade84779e80b3f286a2df"
+                    "type": "archive",
+                    "path": "wxWidgets-3.0.2.tar.bz2",
+                    "sha256": "346879dc554f3ab8d6da2704f651ecb504a22e9d31c17ef5449b129ed711585d"
                 },
-                {
+               {
+                   "type": "patch",
+                   "path": "wxWidgets-1.patch"                   
+               },
+               {
                     "type": "shell",
-                    "commands": [ "autoreconf -i" ]
+                    "commands": [
+                        "mkdir gtk-build",
+                        "cd gtk-build && ../configure --enable-unicode --prefix=/app && make -j5 install"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "libfilezilla",
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "libfilezilla-0.9.1.tar.bz2",
+                    "sha256": "18b2391771f330cccab2c55a66197b9098f236e616f26f86326795b900913b1a"
+                }
+            ]
+        },
+        {
+            "name": "filezilla",
+            "config-opts": [
+                "--with-pugixml=builtin"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "FileZilla_3.25.1_src.tar.bz2",
+                    "sha256": "8873be716059cf7425b72dba5d130ea2a1ec62a769b4ada41f6c7313a2112fc1"
                 }
             ]
         }
