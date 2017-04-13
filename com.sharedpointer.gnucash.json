@@ -1,0 +1,83 @@
+{
+    "app-id": "com.sharedpointer.gnucash",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.24",
+    "sdk": "org.gnome.Sdk",
+    "command": "gnucash",
+    "finish-args": [
+        "--share=ipc", 
+        "--socket=x11",
+        "--socket=wayland",
+        "--share=network"
+    ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g"
+    },
+    "cleanup": ["/include", "/lib/pkgconfig",
+                "/share/pkgconfig", "/share/aclocal",
+                "/man", "/share/man", "/share/gtk-doc",
+                "/share/vala", "*.la", "*.a",
+                "/bin/gcalccmd",
+                "/lib/girepository-1.0", "/share/info", "/share/gtksourceview-3.0",
+                "/share/doc", "/share/gir-1.0"
+    ],
+    "modules": [
+        {
+            "name": "libunistring",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.gnu.org/gnu/libunistring/libunistring-0.9.7.tar.gz",
+                    "sha256": "9ce081cbee1951b55597b30e7030bda9d7b2f034ef901a135ff3a020be5a41e5"
+                }
+            ]
+        },
+        {
+            "name": "bdw-gc",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/ivmai/bdwgc.git",
+                    "branch": "gc7_6_0"
+                }
+            ]
+        },
+        {
+            "name": "guile",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/cky/guile.git",
+                    "branch": "stable-2.0"
+                }
+            ]
+        },
+        {
+            "name": "swig",
+            "config-opts": [
+                "--prefix=/app",
+                "--without-clisp",
+                "--without-maximum-compile-warnings"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/swig/swig.git",
+                    "branch": "rel-3.0.12"
+                }
+            ]
+        },
+        {
+            "name": "gnucash",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/Gnucash/gnucash.git",
+                    "branch": "2.6.16"
+                }
+            ]
+        }
+    ]
+}
+
