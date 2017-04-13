@@ -22,6 +22,10 @@
                    "type": "git",
                    "url": "https://bitbucket.org/loki13/trojita.git",
                    "branch": "webengine"
+               },
+               {
+                   "type": "patch",
+                   "path": "trojita.patch"                   
                }
            ],
            "buildsystem": "cmake",            
