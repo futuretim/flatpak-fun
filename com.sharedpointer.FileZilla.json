@@ -5,7 +5,7 @@
     "sdk": "org.gnome.Sdk",
     "command": "filezilla",
     "finish-args": [
-        "--share=ipc", 
+        "--share=ipc",
         "--socket=x11",
         "--socket=wayland",
         "--share=network"
@@ -29,12 +29,12 @@
             "sources": [
                 {
                     "type": "archive",
-                    "path": "wxWidgets-3.0.2.tar.bz2",
+                    "url": "https://sourceforge.net/projects/wxwindows/files/3.0.2/wxWidgets-3.0.2.tar.bz2",
                     "sha256": "346879dc554f3ab8d6da2704f651ecb504a22e9d31c17ef5449b129ed711585d"
                 },
                {
                    "type": "patch",
-                   "path": "wxWidgets-1.patch"                   
+                   "path": "wxWidgets-1.patch"
                },
                {
                     "type": "shell",
