@@ -5,7 +5,8 @@ Presumably these would eventually make their way back upstream to the owning pro
 On the master branch they should be fully useable flatpak apps. On the work_in_progress branch nothing is guaranteed to work - at all.
 
 
-Currently useable on master:
+Currently WIP status (probably not comprehensive):
 
-	- mdBook (requires the Rust Sdk Extension -- more details https://github.com/futuretim/rust-flatpak-extension)
-	
+* trojita
+* FeedTheMonkey
+* gElemental
