@@ -1,0 +1,37 @@
+{
+    "app-id": "com.sharedpointer.ghex",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.24",
+    "sdk": "org.gnome.Sdk",
+    "command": "ghex",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--share=network"
+    ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g"
+    },
+    "cleanup": ["/include", "/lib/pkgconfig",
+                "/share/pkgconfig", "/share/aclocal",
+                "/man", "/share/man", "/share/gtk-doc",
+                "/share/vala", "*.la", "*.a",
+                "/bin/gcalccmd",
+                "/lib/girepository-1.0", "/share/info", "/share/gtksourceview-3.0",
+                "/share/doc", "/share/gir-1.0"
+    ],
+    "modules": [
+        {
+            "name": "ghex",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://git.gnome.org/browse/ghex",
+                    "branch": "3.18.3"
+                }
+            ]
+        }
+    ]
+}
