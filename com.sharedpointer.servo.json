@@ -1,0 +1,38 @@
+{
+    "app-id": "com.sharedpointer.servo",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.24",
+    "sdk": "org.gnome.Sdk",
+    "sdk-extensions": [ "org.freedesktop.Sdk.Extension.rust" ],
+    "command": "servo",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--share=network"
+    ],
+    "build-options" : {
+    },
+    "cleanup": [
+      "/include", "/lib/pkgconfig",
+      "/share/pkgconfig", "/share/aclocal",
+      "/man", "/share/man", "*.la", "*.a", "/share/doc"
+    ],
+    "modules": [
+        {
+            "name": "servo",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/servo/servo.git",
+                    "branch": "7a7697897d373e05deed6810ea278169c28c4986"
+                }
+            ],
+            "buildsystem": "simple",
+            "build-commands": [
+              "/usr/lib/sdk/rust/install.sh",
+              "source /usr/lib/sdk/rust/use.sh && ./mach build --release"
+             ]
+        }
+    ]
+}

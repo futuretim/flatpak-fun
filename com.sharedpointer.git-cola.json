@@ -1,0 +1,37 @@
+{
+    "app-id": "com.sharedpointer.git-cola",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "master",
+    "sdk": "org.kde.Sdk",
+    "command": "git-cola",
+    "finish-args": [
+      "--share=ipc",
+      "--socket=x11",
+      "--socket=wayland"
+    ],
+    "build-options" : {
+    },
+    "cleanup": [
+      "/include", "/lib/pkgconfig",
+      "/share/pkgconfig", "/share/aclocal",
+      "/man", "/share/man", "/share/doc",
+      "*.la", "*.a"
+    ],
+    "modules": [
+        {
+            "name": "git-cola",
+            "no-autogen": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/git-cola/git-cola.git",
+                    "branch": "v2.11"
+                },
+                {
+                    "type": "shell",
+                    "commands": [ "cp -R * /app" ]
+                }
+            ]
+        }
+    ]
+}
