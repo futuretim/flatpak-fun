@@ -1,11 +1,14 @@
 {
-    "app-id": "com.sharedpointer.bluefish",
+    "app-id": "nl.openoffice.bluefish",
     "runtime": "org.gnome.Platform",
     "runtime-version": "3.24",
     "sdk": "org.gnome.Sdk",
     "command": "bluefish",
+    "rename-icon": "bluefish",
+    "rename-appdata-file": "bluefish.appdata.xml",
+    "rename-desktop-file": "bluefish.desktop",
     "finish-args": [
-        "--share=ipc", 
+        "--share=ipc",
         "--socket=x11",
         "--socket=wayland",
         "--share=network"
@@ -16,11 +19,8 @@
     },
     "cleanup": ["/include", "/lib/pkgconfig",
                 "/share/pkgconfig", "/share/aclocal",
-                "/man", "/share/man", "/share/gtk-doc",
-                "/share/vala", "*.la", "*.a",
-                "/bin/gcalccmd",
-                "/lib/girepository-1.0", "/share/info", "/share/gtksourceview-3.0",
-                "/share/doc", "/share/gir-1.0"
+                "/man", "/share/man", "*.la", "*.a",
+                "/share/info", "/share/doc"
     ],
     "modules": [
         {
@@ -35,5 +35,3 @@
         }
     ]
 }
-
- 
