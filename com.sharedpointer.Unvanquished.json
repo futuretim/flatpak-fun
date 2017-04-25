@@ -1,52 +1,121 @@
 {
-    "app-id": "com.sharedpointer.Unvanquished",
-    "version": "0.50",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "3.24",
-    "sdk": "org.gnome.Sdk",
-    "command": "unvanquished",
-    "finish-args": ["--share=ipc", "--socket=x11", "--filesystem=host", "--device=dri" ],
-    "build-options" : {
-        "cflags": "-O2 -g",
-        "cxxflags": "-O2 -g",
-        "env": {
-            "V": "1"
-        },
-        "build-args": [
-            "--share=network"
-        ]
+  "app-id": "com.sharedpointer.Unvanquished",
+  "version": "0.50",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "3.24",
+  "sdk": "org.gnome.Sdk",
+  "command": "daemon",
+  "finish-args": [
+    "--share=ipc",
+    "--socket=x11",
+    "--filesystem=host",
+    "--device=dri"
+  ],
+  "build-options": {
+    "cflags": "-O2 -g",
+    "cxxflags": "-O2 -g",
+    "env": {
+      "V": "1"
     },
-    "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
-    "modules": [
-        {
-            "name": "opus",
-            "sources": [
-                {
-                    "type": "archive",
-                    "path": "opus-1.1.4.tar.gz",
-                    "sha256": "9122b6b380081dd2665189f97bfd777f04f92dc3ab6698eea1dbb27ad59d8692"
-                }
-            ]
-        },
-        {
-           "name": "Unvanquished",
-           "no-autogen": true,
-           "post-install": [
-           ],
-           "sources": [
-               {
-                   "type": "archive",
-                   "path": "Unvanquished-0.50.0.tar.gz",
-                   "sha256": "98e0a7edb5623df866fdfdf2983ded2d49bc71b42e5fedc46f86cedb45ec7aeb"
-               },
-               {
-                    "type": "shell",
-                    "commands": [ 
-                        "mkdir build",
-                        "cd build && cmake .. && make"
-                    ]
-               }
-            ]
-        }
+    "build-args": [
+      "--share=network"
     ]
+  },
+  "cleanup": [
+    "/include",
+    "/lib/*/include",
+    "/lib/pkgconfig",
+    "/share/pkgconfig",
+    "/share/aclocal",
+    "/man",
+    "/share/man",
+    "/share/info",
+    "/share/gtk-doc",
+    "*.la",
+    "*.a"
+  ],
+  "modules": [
+    {
+      "name": "opus",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://downloads.xiph.org/releases/opus/opus-1.1.4.tar.gz",
+          "sha256": "9122b6b380081dd2665189f97bfd777f04f92dc3ab6698eea1dbb27ad59d8692"
+        }
+      ]
+    },
+    {
+      "name": "opusfile",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://archive.mozilla.org/pub/opus/opusfile-0.7.tar.gz",
+          "sha256": "9e2bed13bc729058591a0f1cab2505e8cfd8e7ac460bf10a78bcc3b125e7c301"
+        }
+      ]
+    },
+    {
+      "name": "geoip",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/maxmind/geoip-api-c/archive/v1.6.9.tar.gz",
+          "sha256": "05468adbb6bdbddc588ee6f0df990f47b1b24d278519c35d59f7a8058a2a9825"
+        }
+      ]
+    },
+    {
+      "name": "ncurses",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://invisible-mirror.net/archives/ncurses/current/ncurses-6.0-20170401.tgz",
+          "sha256": "3c0ba14bcd6e8574c653e77f52b8f6760d861da172d1be47a0a6ef7d580f642a"
+        }
+      ]
+    },
+    {
+      "name": "glew",
+      "no-autogen": true,
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://iweb.dl.sourceforge.net/project/glew/glew/2.0.0/glew-2.0.0.tgz",
+          "sha256": "c572c30a4e64689c342ba1624130ac98936d7af90c3103f9ce12b8a0c5736764"
+        }
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "GLEW_DEST=/app make install"
+      ]
+    },
+    {
+      "name": "glu",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://anongit.freedesktop.org/git/mesa/glu.git",
+          "branch": "glu-9.0.0"
+        }
+      ]
+    },
+    {
+      "name": "Unvanquished",
+      "no-autogen": true,
+      "post-install": [],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/Unvanquished/Unvanquished/archive/v0.50.0.tar.gz",
+          "sha256": "98e0a7edb5623df866fdfdf2983ded2d49bc71b42e5fedc46f86cedb45ec7aeb"
+        }
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir build",
+        "cd build && cmake -D CMAKE_INSTALL_PREFIX=/app -D BUILD_CGAME=OFF -D BUILD_SGAME=OFF .. && make install"
+      ]
+    }
+  ]
 }
