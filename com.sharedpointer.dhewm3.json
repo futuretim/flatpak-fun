@@ -1,9 +1,9 @@
 {
     "app-id": "com.sharedpointer.dhewm3",
     "version": "master",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "3.24",
-    "sdk": "org.gnome.Sdk",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "1.6",
+    "sdk": "org.freedesktop.Sdk",
     "command": "dhewm3",
     "finish-args": ["--share=network", "--socket=x11", "--filesystem=host", "--device=dri" ],
     "build-options" : {
@@ -16,19 +16,6 @@
     "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
     "modules": [
         {
-            "name": "openal",
-            "config-opts": [ "--disable-documentation" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/kcat/openal-soft/archive/openal-soft-1.17.2.zip",
-                    "sha256": "3752c93a4a32506cfa40e18f07db25698ea19887b851eee0615c5a0bcd2e15a8"
-                }
-            ],
-            "buildsystem": "cmake",            
-            "config-opts": [ "-DCMAKE_INSTALL_PREFIX=/app" ] 
-        },
-        {
             "name": "dhewm3",
             "sources": [
                 {
@@ -37,11 +24,10 @@
                     "branch": "master"
                 }
             ],
-            "buildsystem": "cmake",            
+            "buildsystem": "cmake",
             "config-opts": [ "-DCMAKE_INSTALL_PREFIX=/app" ],
             "builddir": true,
             "subdir": "neo"
         }
     ]
 }
-
