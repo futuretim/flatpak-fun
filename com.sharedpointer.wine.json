@@ -1,0 +1,49 @@
+{
+  "app-id": "com.sharedpointer.wine",
+  "version": "2.6",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "1.6",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "wine",
+  "finish-args": [
+    "--share=ipc",
+    "--socket=x11",
+    "--filesystem=host",
+    "--device=dri"
+  ],
+  "build-options": {
+    "cflags": "-O2 -g",
+    "cxxflags": "-O2 -g",
+    "env": {
+      "V": "1"
+    },
+    "build-args": [
+      "--share=network"
+    ]
+  },
+  "cleanup": [
+    "/include",
+    "/lib/*/include",
+    "/lib/pkgconfig",
+    "/share/pkgconfig",
+    "/share/aclocal",
+    "/man",
+    "/share/man",
+    "/share/info",
+    "/share/gtk-doc",
+    "*.la",
+    "*.a"
+  ],
+  "modules": [
+    {
+      "name": "wine",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/wine-mirror/wine/archive/wine-2.6.tar.gz",
+          "sha256": "da69fab80f44fafcfb026bd923f302fc42d5ba11443bcc2728c4c02e1be40613"
+        }
+      ]
+    }
+  ]
+}
