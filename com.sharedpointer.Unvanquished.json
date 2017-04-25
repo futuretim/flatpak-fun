@@ -109,12 +109,19 @@
           "type": "archive",
           "url": "https://github.com/Unvanquished/Unvanquished/archive/v0.50.0.tar.gz",
           "sha256": "98e0a7edb5623df866fdfdf2983ded2d49bc71b42e5fedc46f86cedb45ec7aeb"
+        },
+        {
+          "type": "file",
+          "path": "unvanquished_install.sh",
+          "dest-file": "install.sh",
+          "sha256": "2801d83a4718f516819c920b3b8f1dacc0abf0f0fd8daf48e050145cb541ab59"
         }
       ],
       "buildsystem": "simple",
       "build-commands": [
         "mkdir build",
-        "cd build && cmake -D CMAKE_INSTALL_PREFIX=/app -D BUILD_CGAME=OFF -D BUILD_SGAME=OFF .. && make install"
+        "cd build && cmake -D CMAKE_INSTALL_PREFIX=/app -D BUILD_CGAME=OFF -D BUILD_SGAME=OFF .. && make",
+        "./install.sh"
       ]
     }
   ]
