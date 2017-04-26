@@ -1,0 +1,89 @@
+{
+    "build-runtime": true,
+    "id": "com.sharedpointer.Wine.Sdk",
+    "id-platform": "com.sharedpointer.Wine.Platform",
+    "branch": "2.6",
+    "runtime": "org.freedesktop.Platform",
+    "sdk": "org.freedesktop.Sdk",
+    "runtime-version": "1.6",
+    "sdk-extensions": ["org.freedesktop.Sdk.Debug"],
+    "platform-extensions": [],
+    "finish-args": [
+        "--extension=org.freedesktop.Platform.GL=directory=lib/GL",
+        "--extension=org.freedesktop.Platform.GL=version=1.4",
+        "--extension=org.freedesktop.Platform.GL=versions=1.6;1.4",
+        "--extension=org.freedesktop.Platform.GL=subdirectories=true",
+        "--extension=org.freedesktop.Platform.GL=no-autodownload=true",
+        "--extension=org.freedesktop.Platform.GL=autodelete=false",
+        "--extension=org.freedesktop.Platform.GL=add-ld-path=lib",
+        "--extension=org.freedesktop.Platform.GL=merge-dirs=vulkan/icd.d;glvnd/egl_vendor.d",
+        "--extension=org.freedesktop.Platform.GL=download-if=active-gl-driver",
+        "--extension=org.freedesktop.Platform.GL=enable-if=active-gl-driver",
+        "--extension=org.freedesktop.Platform.Timezones=directory=share/zoneinfo",
+        "--extension=org.freedesktop.Platform.Timezones=version=1.6",
+        "--extension=org.freedesktop.Platform.GStreamer=directory=lib/extensions/gstreamer-1.0",
+        "--extension=org.freedesktop.Platform.GStreamer=version=1.6",
+        "--extension=org.freedesktop.Platform.GStreamer=subdirectories",
+        "--extension=org.freedesktop.Platform.Icontheme=directory=share/runtime/share/icons",
+        "--extension=org.freedesktop.Platform.Icontheme=subdirectories=true",
+        "--extension=org.freedesktop.Platform.Icontheme=no-autodownload=true",
+        "--extension=org.freedesktop.Platform.Icontheme=version=1.0",
+        "--extension=org.freedesktop.Sdk.Extension=subdirectories",
+        "--extension=org.freedesktop.Sdk.Extension=directory=lib/sdk",
+        "--extension=org.freedesktop.Sdk.Extension=no-autodownload=true",
+        "--extension=org.freedesktop.Sdk.Extension=version=1.6",
+        "--extension=org.gtk.Gtk3theme=directory=share/runtime/share/themes",
+        "--extension=org.gtk.Gtk3theme=subdirectories=true",
+        "--extension=org.gtk.Gtk3theme=subdirectory-suffix=gtk-3.0",
+        "--extension=org.gtk.Gtk3theme=no-autodownload=true",
+        "--extension=org.gtk.Gtk3theme=version=3.22",
+        "--env=GI_TYPELIB_PATH=/app/lib/girepository-1.0",
+        "--env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/extensions/gstreamer-1.0:/usr/lib/gstreamer-1.0",
+        "--env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share",
+        "--sdk=com.sharedpointer.Wine.Sdk//2.6",
+        "--runtime=com.sharedpointer.Wine.Platform//2.6"
+    ],
+    "cleanup": [ "/cache",
+                 "/man",
+                 "/share/man",
+                 "/share/gtk-doc/html",
+                 "/lib/systemd",
+                 "*.la", "*.a"],
+    "cleanup-commands": [ "touch -d @0 /usr/share/fonts",
+                          "touch -d @0 /usr/share/fonts/*",
+                          "fc-cache -fs",
+                          "update-desktop-database"
+                        ],
+    "cleanup-platform": [ "/include",
+                          "/share/aclocal",
+                          "/share/pkgconfig",
+                          "/lib/pkgconfig",
+                          "/share/gir-1.0",
+                          "/share/vala"
+                        ],
+    "cleanup-platform-commands": [ "touch -d @0 /usr/share/fonts",
+                                   "touch -d @0 /usr/share/fonts/*",
+                                   "fc-cache -fs",
+                                   "ldconfig -C /usr/etc/ld.so.cache"
+                                 ],
+    "build-options" : {
+        "cflags": "-O2 -g -fstack-protector-strong -D_FORTIFY_SOURCE=2",
+        "cxxflags": "-O2 -g -fstack-protector-strong -D_FORTIFY_SOURCE=2",
+        "ldflags": "-fstack-protector-strong -Wl,-z,relro,-z,now",
+        "env": {
+            "V": "1"
+        }
+    },
+    "modules": [
+      {
+        "name": "wine",
+        "sources": [
+          {
+            "type": "archive",
+            "url": "https://github.com/wine-mirror/wine/archive/wine-2.6.tar.gz",
+            "sha256": "da69fab80f44fafcfb026bd923f302fc42d5ba11443bcc2728c4c02e1be40613"
+          }
+        ]
+      }
+    ]
+}
