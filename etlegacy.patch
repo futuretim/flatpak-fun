@@ -1,0 +1,47 @@
+diff --git a/.gitmodules b/.gitmodules
+index 99d467d..6c0cbc3 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -1,9 +1,9 @@
+ [submodule "libs"]
+ 	path = libs
+-	url = git://github.com/etlegacy/etlegacy-libs.git
++	url = https://github.com/etlegacy/etlegacy-libs.git
+ 	branch = master
+ 	ignore = dirty
+ [submodule "scripts"]
+ 	path = scripts
+-	url = git://github.com/etlegacy/etlegacy-lua_scripts.git
++	url = https://github.com/etlegacy/etlegacy-lua_scripts.git
+ 	branch = master
+diff --git a/cmake/ETLInstallOmniBot.cmake b/cmake/ETLInstallOmniBot.cmake
+index 0656d35..92883ae 100644
+--- a/cmake/ETLInstallOmniBot.cmake
++++ b/cmake/ETLInstallOmniBot.cmake
+@@ -1,26 +1,4 @@
+ message(STATUS "Installing Omni-Bot")
+-# Note: used archive (20MB) doesn't contain incomplete nav- and other unwanted files
+-if(UNIX)
+-	set(ETLEGACY_OMNIBOT_ARCHIVE "omnibot-linux-latest.tar.gz")
+-	set(ETLEGACY_OMNIBOT_ARCHIVE_URL "http://mirror.etlegacy.com/omnibot/omnibot-linux-latest.tar.gz")
+-elseif(WIN32 AND UNZIP_EXECUTABLE)
+-	set(ETLEGACY_OMNIBOT_ARCHIVE "omnibot-windows-latest.zip")
+-	set(ETLEGACY_OMNIBOT_ARCHIVE_URL "http://mirror.etlegacy.com/omnibot/omnibot-windows-latest.zip")
+-endif()
+-
+-set(ETLEGACY_OMNIBOT_DL_URL "${ETLEGACY_OMNIBOT_ARCHIVE_URL}")
+-
+-#file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/legacy")
+-
+-message(STATUS "Downloading Omni-Bot archive to ${CMAKE_CURRENT_BINARY_DIR}/legacy/${ETLEGACY_OMNIBOT_ARCHIVE}")
+-
+-if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/legacy/${ETLEGACY_OMNIBOT_ARCHIVE}")
+-	file(DOWNLOAD
+-		${ETLEGACY_OMNIBOT_DL_URL}
+-		"${CMAKE_CURRENT_BINARY_DIR}/legacy/${ETLEGACY_OMNIBOT_ARCHIVE}"
+-		SHOW_PROGRESS TIMEOUT 30
+-	)
+-endif()
+ 
+ message(STATUS "Extracting Omni-Bot to ${CMAKE_CURRENT_BINARY_DIR}/legacy/omni-bot")
+ if(UNIX)

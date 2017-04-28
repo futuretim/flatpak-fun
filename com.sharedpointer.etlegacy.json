@@ -1,0 +1,63 @@
+{
+  "app-id": "com.sharedpointer.etlegacy",
+  "version": "master",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "1.6",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "etlegacy",
+  "finish-args": [
+    "--share=network",
+    "--socket=x11",
+    "--filesystem=host",
+    "--device=dri"
+  ],
+  "build-options": {
+    "cflags": "-O2 -g",
+    "cxxflags": "-O2 -g",
+    "env": {
+      "V": "1"
+    }
+  },
+  "cleanup": [
+    "/include",
+    "/lib/*/include",
+    "/lib/pkgconfig",
+    "/share/pkgconfig",
+    "/share/aclocal",
+    "/man",
+    "/share/man",
+    "/share/info",
+    "/share/gtk-doc",
+    "*.la",
+    "*.a"
+  ],
+  "modules": [
+    {
+      "name": "etlegacy",
+      "no-autogen": true,
+      "sources": [
+        {
+          "type": "file",
+          "path": "http://mirror.etlegacy.com/omnibot/omnibot-linux-latest.tar.gz",
+          "dest-filename": "build/legacy/omnibot-linux-latest.tar.gz",
+          "sha256": "c85aea94faa18d081ce1238eb83d8438fa081a3f1ffa5186f3174ceae5387233"
+        },
+        {
+          "type": "archive",
+          "url": "https://github.com/etlegacy/etlegacy/archive/v2.75.tar.gz",
+          "sha256": "846027d9bf3ca1a410bd2d3e1e72da9ae4686dbf5194dbc34bca92ab5964ffc4"
+        },
+        {
+          "type": "patch",
+          "path": "etlegacy.patch"
+        },
+        {
+          "type": "shell",
+          "commands": [
+            "chmod +x ./easybuild.sh && ./easybuild.sh"
+          ]
+        }
+      ]
+    }
+  ]
+}
