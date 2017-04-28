@@ -16,19 +16,6 @@
     "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
     "modules": [
         {
-            "name": "openal",
-            "config-opts": [ "--disable-documentation" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/kcat/openal-soft/archive/openal-soft-1.17.2.zip",
-                    "sha256": "3752c93a4a32506cfa40e18f07db25698ea19887b851eee0615c5a0bcd2e15a8"
-                }
-            ],
-            "buildsystem": "cmake",            
-            "config-opts": [ "-DCMAKE_INSTALL_PREFIX=/app" ] 
-        },
-        {
             "name": "ioquake3",
             "no-autogen": true,
             "sources": [
@@ -36,13 +23,15 @@
                     "type": "git",
                     "url": "https://github.com/ioquake/ioq3.git",
                     "branch": "master"
-                }, 
+                },
                 {
                     "type": "shell",
-                    "commands": [ "make" ]
+                    "commands": [
+                      "make",
+                      "install -m 755 quake3.launcher /app/bin"
+                    ]
                 }
             ]
         }
     ]
 }
-
