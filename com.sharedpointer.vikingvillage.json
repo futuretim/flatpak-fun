@@ -1,0 +1,51 @@
+{
+  "app-id": "com.sharedpointer.vikingvillage",
+  "version": "",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "1.6",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "vv.x86_64",
+  "finish-args": [
+    "--share=ipc",
+    "--socket=x11",
+    "--filesystem=host",
+    "--device=dri"
+  ],
+  "build-options": {
+    "cflags": "-O2 -g",
+    "cxxflags": "-O2 -g",
+    "env": {
+      "V": "1"
+    },
+    "build-args": []
+  },
+  "cleanup": [
+    "/include",
+    "/lib/*/include",
+    "/lib/pkgconfig",
+    "/share/pkgconfig",
+    "/share/aclocal",
+    "/man",
+    "/share/man",
+    "/share/info",
+    "/share/gtk-doc",
+    "*.la",
+    "*.a"
+  ],
+  "modules": [
+    {
+      "name": "VikingVillage",
+      "sources": [
+        {
+          "type": "archive",
+          "path": "/home/tim/Downloads/unity-demos/VikingVillage.tar.bz2"
+        }
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/bin",
+        "cp -R * /app/bin"
+      ]
+    }
+  ]
+}
